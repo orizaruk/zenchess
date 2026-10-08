@@ -13,8 +13,8 @@ across the board.
 - Sidebar: the "name (rating) vs. name (rating), win +8 / lose -8" line, and
   the Chat and Info tabs.
 - Pre-game "vs" animation.
-- Game-over popup: your new rating and the +/- change. (The popup shows
-  nothing about the opponent.)
+- Game-over popup: the new rating and +/- change for both the opponent and
+  you. Your league badge stays.
 - Your own rating in the player bar (on by default; toggle in the popup).
 - Home page: the whole Game History section.
 

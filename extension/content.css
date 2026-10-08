@@ -64,9 +64,11 @@ html.zc-on [class*="game-vs-animation"] {
 }
 
 /* --- Game-over modal ---
-   It shows no opponent identity, only your new rating and the +/- change
-   (.game-over-stat-card-rating). Hide that card; the result, Game Review,
-   Rematch and the league card stay. */
+   Each player has a .player-game-over-component holding a
+   .rating-score-component (icon, new rating, +/- change). Hide it for both
+   the opponent and you; your league badge in the same component stays.
+   .game-over-stat-card-rating is the separate summary card. */
+html.zc-on .player-game-over-component .rating-score-component,
 html.zc-on .game-over-stat-card-rating {
   display: none !important;
 }
