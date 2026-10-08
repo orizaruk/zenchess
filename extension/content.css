@@ -1,70 +1,69 @@
 /*
  * ZenChess: everything is scoped under html.zc-on so the popup toggle can
- * switch it off instantly. Rules apply only on pages with a board layout.
+ * switch it off instantly.
  *
- * The opponent is always the TOP player bar (#board-layout-player-top),
- * since chess.com puts you at the bottom. Clocks and captured pieces stay.
+ * Player bar structure on chess.com (Oct 2026):
+ *   #board-layout-player-top            (opponent; you are always at the bottom)
+ *     .player-avatar                    avatar image
+ *     .player-tagline
+ *       .cc-user-block-component        username, rating, country flag, connection
+ *       wc-captured-pieces              captured pieces: keep
+ *     .clock-component                  clock: keep
  */
 
-/* --- Opponent identity: avatar, name, rating, flag, badges, flair --- */
-html.zc-on #board-layout-player-top .player-avatar,
-html.zc-on #board-layout-player-top .player-avatar-image,
-html.zc-on #board-layout-player-top .cc-avatar-component,
-html.zc-on #board-layout-player-top img[class*="avatar"],
-html.zc-on #board-layout-player-top [class*="country-flag"],
-html.zc-on #board-layout-player-top [class*="cc-flag"],
-html.zc-on #board-layout-player-top [class*="flair"],
-html.zc-on #board-layout-player-top [class*="badge"],
-html.zc-on #board-layout-player-top [class*="user-status"],
-html.zc-on #board-layout-player-top [class*="rating"] {
-  display: none !important;
+/* --- Opponent avatar: keep the slot, show a blank tile --- */
+html.zc-on #board-layout-player-top .player-avatar .cc-avatar-component {
+  background: rgba(127, 127, 127, 0.25) !important;
+  border-radius: 4px;
+}
+html.zc-on #board-layout-player-top .player-avatar img {
+  visibility: hidden !important;
 }
 
-/* Name / tagline: keep the space, hide the text, show a neutral label. */
-html.zc-on #board-layout-player-top .player-tagline,
-html.zc-on #board-layout-player-top .user-tagline-component,
-html.zc-on #board-layout-player-top .cc-user-block-component {
-  visibility: hidden !important;
-  pointer-events: none !important; /* no hover cards revealing the name */
-  position: relative !important;
+/* --- Opponent name, rating, flag, badges: replaced by a plain label --- */
+html.zc-on #board-layout-player-top .cc-user-block-component > * {
+  display: none !important;
 }
-html.zc-on #board-layout-player-top .player-tagline::before,
-html.zc-on #board-layout-player-top .user-tagline-component::before,
+html.zc-on #board-layout-player-top .cc-user-block-component {
+  pointer-events: none !important; /* no hover card revealing the name */
+}
 html.zc-on #board-layout-player-top .cc-user-block-component::before {
   content: "Opponent";
-  visibility: visible;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
   font-weight: 600;
   white-space: nowrap;
 }
-/* Don't stack two labels if the elements are nested. */
-html.zc-on #board-layout-player-top .player-tagline .user-tagline-component::before,
-html.zc-on #board-layout-player-top .player-tagline .cc-user-block-component::before,
-html.zc-on #board-layout-player-top .user-tagline-component .cc-user-block-component::before {
-  content: none;
-}
-
-/* Hover popovers / user cards anywhere on a board page. */
-html.zc-on #user-popover,
-html.zc-on .user-popover-component,
-html.zc-on [class*="user-popover"],
-html.zc-on [class*="cc-user-card"] {
-  display: none !important;
-}
 
 /* --- Optional: hide my own rating too --- */
-html.zc-on.zc-hide-own #board-layout-player-bottom [class*="rating"] {
+html.zc-on.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"] {
   display: none !important;
 }
 
-/* --- Game-over modal: hide ratings, rating change and the players' identity --- */
+/* --- Sidebar --- */
+/* "Name (rating) vs. Name (rating) … win +8 / lose -8" line in the Moves tab. */
+html.zc-on .game-start-message-component,
+/* Chat and Info tabs both show who you're playing. */
+html.zc-on .underlined-tabs-tab[data-tab="GameViewTab.Chat"],
+html.zc-on .underlined-tabs-tab[data-tab="GameViewTab.Info"] {
+  display: none !important;
+}
+
+/* --- Hover popovers / user cards --- */
+html.zc-on #user-popover,
+html.zc-on [class*="user-popover"] {
+  display: none !important;
+}
+
+/* --- Pre-game "vs" animation (shows both players) --- */
+html.zc-on [class*="game-vs-animation"] {
+  display: none !important;
+}
+
+/* --- Game-over modal: hide ratings, rating change and the players' identity.
+   Class names here are not yet confirmed against the live page. --- */
 html.zc-on [class*="game-over"] [class*="rating"],
 html.zc-on [class*="game-over"] [class*="avatar"],
 html.zc-on [class*="game-over"] [class*="username"],
-html.zc-on [class*="game-over"] [class*="user-tagline"],
+html.zc-on [class*="game-over"] [class*="user-block"],
 html.zc-on [class*="game-over"] [class*="country-flag"],
 html.zc-on [class*="game-over"] [class*="flair"] {
   display: none !important;

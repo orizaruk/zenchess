@@ -10,7 +10,11 @@ across the board.
 - Opponent (top player bar): avatar, username, rating, flag, badges/flair,
   hover cards and name tooltips. A plain "Opponent" label replaces them.
   The clock and captured pieces stay visible.
-- Game-over popup: ratings, rating change, names and avatars.
+- Sidebar: the "name (rating) vs. name (rating), win +8 / lose -8" line, and
+  the Chat and Info tabs.
+- Pre-game "vs" animation.
+- Game-over popup: ratings, rating change, names and avatars (not yet verified
+  against the live page).
 - Optional (from the popup): your own rating.
 
 ## Install (Chrome / Edge / Brave)
