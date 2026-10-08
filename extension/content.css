@@ -48,6 +48,7 @@ html.zc-on #board-layout-player-top .user-tagline-component .cc-user-block-compo
 }
 
 /* Hover popovers / user cards anywhere on a board page. */
+html.zc-on #user-popover,
 html.zc-on .user-popover-component,
 html.zc-on [class*="user-popover"],
 html.zc-on [class*="cc-user-card"] {
