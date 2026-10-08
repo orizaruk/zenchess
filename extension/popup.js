@@ -1,4 +1,4 @@
-const defaults = { enabled: true, hideOwnRating: false };
+const defaults = { enabled: true, hideOwnRating: true };
 
 chrome.storage.sync.get(defaults, (settings) => {
   for (const key of Object.keys(defaults)) {

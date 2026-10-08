@@ -33,8 +33,13 @@ html.zc-on #board-layout-player-top .cc-user-block-component::before {
   white-space: nowrap;
 }
 
-/* --- Optional: hide my own rating too --- */
+/* --- My own rating (on by default, toggle in the popup) --- */
 html.zc-on.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"] {
+  display: none !important;
+}
+
+/* --- Home page: the whole Game History section (names, ratings, flags) --- */
+html.zc-on .game-history-games-component {
   display: none !important;
 }
 

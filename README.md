@@ -15,7 +15,8 @@ across the board.
 - Pre-game "vs" animation.
 - Game-over popup: your new rating and the +/- change. (The popup shows
   nothing about the opponent.)
-- Optional (from the popup): your own rating.
+- Your own rating in the player bar (on by default; toggle in the popup).
+- Home page: the whole Game History section.
 
 ## Install (Chrome / Edge / Brave)
 

@@ -5,7 +5,7 @@
   // On by default, before storage answers, so nothing flashes on page load.
   root.classList.add("zc-on");
 
-  const settings = { enabled: true, hideOwnRating: false };
+  const settings = { enabled: true, hideOwnRating: true };
 
   function apply() {
     root.classList.toggle("zc-on", settings.enabled);
