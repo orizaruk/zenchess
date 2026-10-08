@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "ZenChess",
+  "version": "0.1.0",
+  "description": "Play chess.com without knowing who you're playing: hides opponent name, avatar, rating, country and flair.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "ZenChess",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.chess.com/*", "https://chess.com/*"],
+      "css": ["content.css"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
