@@ -13,8 +13,8 @@ across the board.
 - Sidebar: the "name (rating) vs. name (rating), win +8 / lose -8" line, and
   the Chat and Info tabs.
 - Pre-game "vs" animation.
-- Game-over popup: ratings, rating change, names and avatars (not yet verified
-  against the live page).
+- Game-over popup: your new rating and the +/- change. (The popup shows
+  nothing about the opponent.)
 - Optional (from the popup): your own rating.
 
 ## Install (Chrome / Edge / Brave)

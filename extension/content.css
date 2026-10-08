@@ -58,13 +58,10 @@ html.zc-on [class*="game-vs-animation"] {
   display: none !important;
 }
 
-/* --- Game-over modal: hide ratings, rating change and the players' identity.
-   Class names here are not yet confirmed against the live page. --- */
-html.zc-on [class*="game-over"] [class*="rating"],
-html.zc-on [class*="game-over"] [class*="avatar"],
-html.zc-on [class*="game-over"] [class*="username"],
-html.zc-on [class*="game-over"] [class*="user-block"],
-html.zc-on [class*="game-over"] [class*="country-flag"],
-html.zc-on [class*="game-over"] [class*="flair"] {
+/* --- Game-over modal ---
+   It shows no opponent identity, only your new rating and the +/- change
+   (.game-over-stat-card-rating). Hide that card; the result, Game Review,
+   Rematch and the league card stay. */
+html.zc-on .game-over-stat-card-rating {
   display: none !important;
 }
