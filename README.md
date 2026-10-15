@@ -17,17 +17,19 @@ across the board.
 - Pre-game "vs" animation.
 - Game-over popup: the new rating and +/- change for both the opponent and
   you. Your league badge stays.
-- Your own rating in the player bar (on by default; toggle in the popup).
+- Your own rating in the player bar (on by default; toggle in the popup,
+  works with Zen mode on or off).
 - Home page: the whole Game History section.
 
-## Account-age badge
+## New-account flag
 
-With **Show account-age badge** on (the default), the opponent's bar shows a
-badge with how old their chess.com account is. The name itself stays hidden.
+With **Flag new accounts** on (the default), a red badge appears next to
+"Opponent" when the account looks suspicious. The name itself stays hidden.
 
-- **Red**: the account is under 30 days old, or has no public profile (404).
-- **Gray**: still checking, or the lookup failed.
-- **Green**: 30 days or older, with the age (e.g. "Account · 1 yr 8 mo").
+- "New account · 6 days": the account is under 30 days old.
+- "No public profile": chess.com has no profile for that name (e.g. guests).
+
+Older accounts get no badge, and neither do opponents whose lookup fails.
 
 The join date comes from chess.com's public API
 (`api.chess.com/pub/player/<username>`). There's no badge in games against

@@ -9,7 +9,7 @@
 
   function apply() {
     root.classList.toggle("zc-on", settings.enabled);
-    root.classList.toggle("zc-hide-own", settings.enabled && settings.hideOwnRating);
+    root.classList.toggle("zc-hide-own", settings.hideOwnRating);
     if (settings.enabled) scrub();
     showAccountBadge();
   }
@@ -40,78 +40,68 @@
     }
   }
 
-  // Account-age badge on the opponent's bar: red (under NEW_ACCOUNT_DAYS old,
-  // or no public profile), gray (checking / lookup failed), green (older).
-  // The join date comes from chess.com's public API (an exact timestamp), so
-  // we don't depend on the hover card's "6 days ago" / "Feb 15, 2025" text.
+  // Flag suspicious opponents with a red badge: account under NEW_ACCOUNT_DAYS
+  // old, or no public profile (404, e.g. guests). Nothing is shown for older
+  // accounts or when the lookup fails. The join date comes from chess.com's
+  // public API (an exact timestamp), so we don't depend on the hover card's
+  // "6 days ago" / "Feb 15, 2025" text.
   const NEW_ACCOUNT_DAYS = 30;
   const DAY_MS = 24 * 60 * 60 * 1000;
-  const lookups = new Map(); // username -> Promise<{ kind, days? }>
+  const RETRY_MS = 60 * 1000;
+  const results = new Map(); // username -> { kind: "new" | "missing" | "ok" | "error", days?, at? }
+  const inflight = new Set();
 
   function lookup(username) {
-    if (!lookups.has(username)) {
-      const url = `https://api.chess.com/pub/player/${encodeURIComponent(username)}`;
-      lookups.set(
-        username,
-        fetch(url)
-          .then(async (r) => {
-            if (r.status === 404) return { kind: "missing" };
-            if (!r.ok) throw new Error(`HTTP ${r.status}`);
-            const { joined } = await r.json();
-            if (!joined) throw new Error("no join date");
-            const days = Math.max(0, Math.floor((Date.now() - joined * 1000) / DAY_MS));
-            return { kind: days < NEW_ACCOUNT_DAYS ? "new" : "ok", days };
-          })
-          .catch(() => {
-            lookups.delete(username); // retry on the next game / page change
-            return { kind: "error" };
-          })
-      );
-    }
-    return lookups.get(username);
+    if (inflight.has(username)) return;
+    inflight.add(username);
+    const url = `https://api.chess.com/pub/player/${encodeURIComponent(username)}`;
+    fetch(url)
+      .then(async (r) => {
+        if (r.status === 404) return { kind: "missing" };
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const { joined } = await r.json();
+        if (!joined) throw new Error("no join date");
+        const days = Math.max(0, Math.floor((Date.now() - joined * 1000) / DAY_MS));
+        return { kind: days < NEW_ACCOUNT_DAYS ? "new" : "ok", days };
+      })
+      .catch(() => ({ kind: "error", at: Date.now() }))
+      .then((result) => {
+        results.set(username, result);
+        inflight.delete(username);
+        showAccountBadge();
+      });
   }
 
-  function formatAge(days) {
-    if (days === 0) return "today";
-    if (days < NEW_ACCOUNT_DAYS) return days === 1 ? "1 day" : `${days} days`;
-    const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 30.4);
-    if (!years) return `${Math.max(1, months)} mo`;
-    return months ? `${years} yr ${months} mo` : `${years} yr`;
-  }
-
-  const BADGE_TEXT = {
-    checking: () => "Checking account…",
-    new: (r) => `New account · ${formatAge(r.days)}`,
-    missing: () => "No public profile",
-    error: () => "Account age unknown",
-    ok: (r) => `Account · ${formatAge(r.days)}`,
-  };
-
-  function setBadge(badge, result) {
-    badge.dataset.zcState = result.kind;
-    badge.textContent = BADGE_TEXT[result.kind](result);
+  function badgeText({ kind, days }) {
+    if (kind === "missing") return "No public profile";
+    return `New account · ${days === 0 ? "today" : days === 1 ? "1 day" : `${days} days`}`;
   }
 
   function showAccountBadge() {
     const block = document.querySelector("#board-layout-player-top .cc-user-block-component");
     const nameEl = block && block.querySelector('[data-test-element="user-tagline-username"]');
     const username = nameEl && nameEl.textContent.trim().toLowerCase();
-    let badge = document.querySelector(".zc-account-badge");
+    const badge = document.querySelector(".zc-account-badge");
     // Bots and the coach sit in the same player bar but aren't real accounts.
     const vsComputer = /^\/play\/(computer|coach)\b/.test(location.pathname);
-    if (!settings.flagNewAccounts || !username || vsComputer) {
+    let result = username && results.get(username);
+    if (result && result.kind === "error" && Date.now() - result.at > RETRY_MS) {
+      results.delete(username);
+      result = null;
+    }
+    if (settings.flagNewAccounts && username && !vsComputer && !result) lookup(username);
+    const suspicious = result && (result.kind === "new" || result.kind === "missing");
+    if (!settings.flagNewAccounts || vsComputer || !suspicious) {
       if (badge) badge.remove();
       return;
     }
     if (badge && badge.dataset.zcUser === username && badge.parentNode === block) return;
     if (badge) badge.remove();
-    badge = document.createElement("span");
-    badge.className = "zc-account-badge";
-    badge.dataset.zcUser = username;
-    setBadge(badge, { kind: "checking" });
-    block.appendChild(badge);
-    lookup(username).then((result) => setBadge(badge, result));
+    const el = document.createElement("span");
+    el.className = "zc-account-badge";
+    el.dataset.zcUser = username;
+    el.textContent = badgeText(result);
+    block.appendChild(el);
   }
 
   let pending = false;

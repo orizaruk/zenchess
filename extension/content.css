@@ -33,8 +33,9 @@ html.zc-on #board-layout-player-top .cc-user-block-component::before {
   white-space: nowrap;
 }
 
-/* --- My own rating (on by default, toggle in the popup) --- */
-html.zc-on.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"] {
+/* --- My own rating (on by default, toggle in the popup; works with or
+   without Zen mode) --- */
+html.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"] {
   display: none !important;
 }
 
@@ -73,24 +74,17 @@ html.zc-on .game-over-stat-card-rating {
   display: none !important;
 }
 
-/* --- Account-age badge (added by content.js, works with Zen mode on or off) --- */
+/* --- New-account badge (added by content.js, works with Zen mode on or off) --- */
 .zc-account-badge {
   display: inline-flex;
   align-items: center;
   margin-left: 8px;
   padding: 1px 6px;
   border-radius: 4px;
-  background: #6b6966; /* checking / error */
+  background: #c33a32;
   color: #fff;
   font-size: 12px;
   font-weight: 700;
   line-height: 18px;
   white-space: nowrap;
-}
-.zc-account-badge[data-zc-state="new"],
-.zc-account-badge[data-zc-state="missing"] {
-  background: #c33a32;
-}
-.zc-account-badge[data-zc-state="ok"] {
-  background: #5d8a3a;
 }

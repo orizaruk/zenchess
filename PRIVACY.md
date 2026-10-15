@@ -11,7 +11,7 @@ servers of its own.
   your browser.
 - **Saves your settings** (the popup toggles) with Chrome's `storage.sync`, so
   they follow your Chrome profile. Nothing else is stored.
-- **Looks up your opponent's account age** when the account-age badge is on.
+- **Looks up your opponent's account age** when "Flag new accounts" is on.
   The extension sends your opponent's chess.com username to chess.com's own
   public API (`https://api.chess.com/pub/player/<username>`) and reads the
   account's join date from the reply. The request goes straight from your

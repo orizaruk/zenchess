@@ -31,10 +31,9 @@ What it hides while you play:
 • Your own rating (optional)
 • The Game History section on the home page
 
-Account-age badge (optional):
-A small badge next to "Opponent" shows how old their account is, without
-showing who they are. Red means under 30 days old or no public profile,
-green means an established account, and gray means it couldn't be checked.
+New-account flag (optional):
+A red badge next to "Opponent" warns you when their account is under 30 days
+old or has no public profile, without showing who they are.
 
 The clock, captured pieces and everything else you need to play stay visible.
 Toggle any of it from the toolbar icon; changes apply instantly.
@@ -49,7 +48,7 @@ or sponsored by Chess.com.
 
 **Screenshots** (1280×800 or 640×400, at least 1): take them yourself in a
 real game. Suggested shots:
-1. A game in progress with "Opponent" and a green account badge.
+1. A game in progress with "Opponent" and no badge.
 2. A red "New account" badge.
 3. The popup with its toggles.
 
@@ -59,12 +58,12 @@ real game. Suggested shots:
 
 **Single purpose:**
 Hide opponent identity and ratings on Chess.com so players can focus on the
-game, optionally showing the opponent's account age.
+game, optionally flagging opponents with very new accounts.
 
 **Permission justifications:**
 - `storage`: saves the user's on/off settings from the popup.
 - Host access (content script on chess.com): the extension hides elements on
-  Chess.com pages and adds the account-age badge there. It runs on no other
+  Chess.com pages and adds the new-account badge there. It runs on no other
   site.
 
 **Remote code:** No.
