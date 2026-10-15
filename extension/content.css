@@ -21,7 +21,7 @@ html.zc-on #board-layout-player-top .player-avatar img {
 }
 
 /* --- Opponent name, rating, flag, badges: replaced by a plain label --- */
-html.zc-on #board-layout-player-top .cc-user-block-component > * {
+html.zc-on #board-layout-player-top .cc-user-block-component > :not(.zc-account-badge) {
   display: none !important;
 }
 html.zc-on #board-layout-player-top .cc-user-block-component {
@@ -71,4 +71,26 @@ html.zc-on [class*="game-vs-animation"] {
 html.zc-on .player-game-over-component .rating-score-component,
 html.zc-on .game-over-stat-card-rating {
   display: none !important;
+}
+
+/* --- Account-age badge (added by content.js, works with Zen mode on or off) --- */
+.zc-account-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #6b6966; /* checking / error */
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.zc-account-badge[data-zc-state="new"],
+.zc-account-badge[data-zc-state="missing"] {
+  background: #c33a32;
+}
+.zc-account-badge[data-zc-state="ok"] {
+  background: #5d8a3a;
 }
