@@ -21,24 +21,36 @@ across the board.
   works with Zen mode on or off).
 - Home page: the whole Game History section.
 
-## New-account flag
+## Suspicious-opponent flag
 
-With **Flag new accounts** on (the default), a red badge appears next to
-"Opponent" when the account looks suspicious. The name itself stays hidden.
+A red badge appears next to "Opponent" when the account looks suspicious.
+The name itself stays hidden. Two checks, each with its own toggle and
+threshold in the popup (both on by default):
 
-- "New account · 6 days": the account is under 30 days old.
-- "No public profile": chess.com has no profile for that name (e.g. guests).
+- **Account age**: under 30 days old.
+- **Games played**: under 50 rated games in the mode you're playing
+  (bullet, blitz, rapid or daily).
 
-Older accounts get no badge, and neither do opponents whose lookup fails.
+Either check alone shows the badge, listing whichever reasons apply:
 
-The join date comes from chess.com's public API
-(`api.chess.com/pub/player/<username>`). There's no badge in games against
+- New account: "New account · 4 days".
+- Few games in this mode, even on an old account: "12 rapid games".
+- Both: "New account · 4 days · 12 rapid games".
+- No public profile (e.g. guests): "No public profile".
+
+If the games count is unknown (unrated variant, lookup failed), only account
+age can flag.
+
+Nothing shows when nothing is suspicious.
+
+The data comes from chess.com's public API: the join date from
+`api.chess.com/pub/player/<username>` and games per mode from `.../stats`. There's no badge in games against
 bots or the coach.
 
 ## Privacy and fair play
 
-ZenChess collects no data and has no servers. Its only network request goes
-to chess.com's own API, for the opponent's join date. See
+ZenChess collects no data and has no servers. Its only network requests go to
+chess.com's own API, for the opponent's join date and games played. See
 [PRIVACY.md](PRIVACY.md).
 
 It only hides information and shows public profile data. It never reads the

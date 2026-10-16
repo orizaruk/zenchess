@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   <style>
-    body { font: 14px system-ui, sans-serif; margin: 0; padding: 14px 16px; width: 230px; background: #262421; color: #e8e6e3; }
+    body { font: 14px system-ui, sans-serif; margin: 0; padding: 14px 16px; width: 280px; background: #262421; color: #e8e6e3; }
     h1 { font-size: 16px; margin: 0 0 10px; }
+    h2 { font-size: 13px; font-weight: 600; color: #a8a6a3; margin: 14px 0 4px; }
     label { display: flex; align-items: center; gap: 8px; margin: 8px 0; cursor: pointer; }
-    p { color: #a8a6a3; font-size: 12px; margin: 10px 0 0; }
+    input[type="number"] { width: 48px; padding: 2px 4px; font: inherit; color: inherit; background: #3a3734; border: 1px solid #55524e; border-radius: 4px; }
+    p { color: #a8a6a3; font-size: 12px; margin: 12px 0 0; }
   </style>
 </head>
 <body>
   <h1>ZenChess</h1>
   <label><input type="checkbox" id="enabled"> Zen mode</label>
   <label><input type="checkbox" id="hideOwnRating"> Hide my rating</label>
-  <label><input type="checkbox" id="flagNewAccounts"> Flag new accounts</label>
+  <h2>Flag suspicious opponents</h2>
+  <label><input type="checkbox" id="flagNewAccounts"> Account under <input type="number" id="newAccountDays" min="1" max="365"> days old</label>
+  <label><input type="checkbox" id="flagFewGames"> Under <input type="number" id="minGames" min="1" max="1000"> games in this mode</label>
   <p>Changes apply instantly to open chess.com tabs.</p>
   <script src="popup.js"></script>
 </body>

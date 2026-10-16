@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ZenChess",
   "version": "1.0.0",
-  "description": "Play on Chess.com without knowing who you're playing: hides opponent identity and ratings, and shows how old their account is.",
+  "description": "Play on Chess.com without knowing who you're playing: hides opponent identity and ratings, and flags suspicious accounts.",
   "permissions": ["storage"],
   "icons": {
     "16": "icons/icon-16.png",

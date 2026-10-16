@@ -7,7 +7,7 @@ Copy these into the Developer Dashboard fields.
 **Name:** ZenChess
 
 **Summary** (from manifest, 132 chars max):
-Play on Chess.com without knowing who you're playing: hides opponent identity and ratings, and shows how old their account is.
+Play on Chess.com without knowing who you're playing: hides opponent identity and ratings, and flags suspicious accounts.
 
 **Category:** Games (or Entertainment, whichever the dashboard offers)
 
@@ -31,15 +31,16 @@ What it hides while you play:
 • Your own rating (optional)
 • The Game History section on the home page
 
-New-account flag (optional):
-A red badge next to "Opponent" warns you when their account is under 30 days
-old or has no public profile, without showing who they are.
+Suspicious-opponent flag (optional):
+A red badge next to "Opponent" warns you when they have few games in the
+mode you're playing, a brand-new account or no public profile, without
+showing who they are. Both thresholds are adjustable.
 
 The clock, captured pieces and everything else you need to play stay visible.
 Toggle any of it from the toolbar icon; changes apply instantly.
 
-Privacy: no tracking, no analytics, no servers. The only network request is
-to Chess.com's own public API, for the opponent's join date.
+Privacy: no tracking, no analytics, no servers. The only network requests go
+to Chess.com's own public API, for the opponent's join date and games played.
 
 ZenChess is an independent project and is not affiliated with, endorsed by
 or sponsored by Chess.com.
@@ -58,19 +59,19 @@ real game. Suggested shots:
 
 **Single purpose:**
 Hide opponent identity and ratings on Chess.com so players can focus on the
-game, optionally flagging opponents with very new accounts.
+game, optionally flagging suspicious opponents (new accounts, few games).
 
 **Permission justifications:**
 - `storage`: saves the user's on/off settings from the popup.
 - Host access (content script on chess.com): the extension hides elements on
-  Chess.com pages and adds the new-account badge there. It runs on no other
+  Chess.com pages and adds the suspicious-opponent badge there. It runs on no other
   site.
 
 **Remote code:** No.
 
 **Data usage:** Check none of the data types; the extension collects no user
 data. Opponent usernames are sent only to Chess.com's own API to read the
-account's join date and are not stored or shared.
+account's join date and games played, and are not stored or shared.
 Certify all three statements (no selling, no unrelated use, no creditworthiness).
 
 **Privacy policy URL:** link to `PRIVACY.md` on GitHub.

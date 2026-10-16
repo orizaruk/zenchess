@@ -11,10 +11,11 @@ servers of its own.
   your browser.
 - **Saves your settings** (the popup toggles) with Chrome's `storage.sync`, so
   they follow your Chrome profile. Nothing else is stored.
-- **Looks up your opponent's account age** when "Flag new accounts" is on.
-  The extension sends your opponent's chess.com username to chess.com's own
-  public API (`https://api.chess.com/pub/player/<username>`) and reads the
-  account's join date from the reply. The request goes straight from your
+- **Looks up your opponent's account age and games played** when either
+  suspicious-opponent check is on. The extension sends your opponent's
+  chess.com username to chess.com's own public API
+  (`https://api.chess.com/pub/player/<username>` and `.../stats`) and reads
+  the account's join date and game counts from the reply. The request goes straight from your
   browser to chess.com, like any other request the chess.com page makes. No
   third party is involved. Results are kept in memory only until the tab is
   closed or reloaded.
