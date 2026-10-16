@@ -7,6 +7,8 @@ opponent's name, avatar, rating, country flag and badges are hidden. It's
 like playing a computer, with no rating anxiety and no tilt from seeing who's
 across the board.
 
+<img src="store/screenshots/1-new-account-badge.png" width="640" alt="A chess.com game with the opponent shown only as Opponent and a red badge: New account, 18 days, 49 rapid games">
+
 ## What it hides
 
 - Opponent (top player bar): avatar, username, rating, flag, badges/flair,

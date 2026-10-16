@@ -47,11 +47,11 @@ or sponsored by Chess.com.
 
 **Icon:** `extension/icons/icon-128.png`
 
-**Screenshots** (1280×800 or 640×400, at least 1): take them yourself in a
-real game. Suggested shots:
-1. A game in progress with "Opponent" and no badge.
-2. A red "New account" badge.
-3. The popup with its toggles.
+**Screenshots** (1280×800, upload in this order), in `store/screenshots/`:
+1. `1-new-account-badge.png`: a game with the red "New account · 18 days ·
+   49 rapid games" badge.
+2. `2-zen-mode-game.png`: a game in Zen mode, opponent hidden, no badge.
+3. `3-popup-settings.png`: the popup with all its settings.
 
 **Small promo tile** (440×280): `store/promo-tile-440x280.png`
 
