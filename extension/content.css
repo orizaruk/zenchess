@@ -20,16 +20,24 @@ html.zc-on #board-layout-player-top .player-avatar img {
   visibility: hidden !important;
 }
 
-/* --- Opponent name, rating, flag, badges: replaced by a plain label --- */
-html.zc-on #board-layout-player-top .cc-user-block-component > :not(.zc-account-badge) {
+/* --- Opponent name, rating, flag, badges: replaced by a plain label ---
+   The label is drawn on the username element itself (real name shrunk to
+   zero size), so it inherits chess.com's name color and font in any theme.
+   The block's own color is the page background, so text drawn there is
+   invisible in dark mode. */
+html.zc-on #board-layout-player-top .cc-user-block-component
+  > :not(.zc-account-badge):not([data-test-element="user-tagline-username"]) {
   display: none !important;
 }
 html.zc-on #board-layout-player-top .cc-user-block-component {
   pointer-events: none !important; /* no hover card revealing the name */
 }
-html.zc-on #board-layout-player-top .cc-user-block-component::before {
+html.zc-on #board-layout-player-top [data-test-element="user-tagline-username"] {
+  font-size: 0 !important;
+}
+html.zc-on #board-layout-player-top [data-test-element="user-tagline-username"]::after {
   content: "Opponent";
-  font-weight: 600;
+  font-size: 14px;
   white-space: nowrap;
 }
 
