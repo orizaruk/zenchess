@@ -3,11 +3,12 @@
 (() => {
   const root = document.documentElement;
   // On by default, before storage answers, so nothing flashes on page load.
-  root.classList.add("zc-on");
+  root.classList.add("zc-on", "zc-hide-own", "zc-hide-history");
 
   const settings = {
     enabled: true,
     hideOwnRating: true,
+    hideGameHistory: true,
     flagNewAccounts: true,
     newAccountDays: 30,
     flagFewGames: true,
@@ -17,6 +18,7 @@
   function apply() {
     root.classList.toggle("zc-on", settings.enabled);
     root.classList.toggle("zc-hide-own", settings.hideOwnRating);
+    root.classList.toggle("zc-hide-history", settings.hideGameHistory);
     if (settings.enabled) scrub();
     showAccountBadge();
   }

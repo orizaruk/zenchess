@@ -1,6 +1,7 @@
 const defaults = {
   enabled: true,
   hideOwnRating: true,
+  hideGameHistory: true,
   flagNewAccounts: true,
   newAccountDays: 30,
   flagFewGames: true,

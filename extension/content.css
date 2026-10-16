@@ -42,13 +42,18 @@ html.zc-on #board-layout-player-top [data-test-element="user-tagline-username"]:
 }
 
 /* --- My own rating (on by default, toggle in the popup; works with or
-   without Zen mode) --- */
-html.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"] {
+   without Zen mode). The sidebar "vs" line and the game-over rating rows
+   mix both players' ratings, so those are hidden whole. --- */
+html.zc-hide-own #board-layout-player-bottom [class*="cc-user-rating"],
+html.zc-hide-own .game-start-message-component,
+html.zc-hide-own .player-game-over-component .rating-score-component,
+html.zc-hide-own .game-over-stat-card-rating {
   display: none !important;
 }
 
-/* --- Home page: the whole Game History section (names, ratings, flags) --- */
-html.zc-on .game-history-games-component {
+/* --- Home page: the whole Game History section (names, ratings, flags).
+   Own toggle in the popup; works with or without Zen mode. --- */
+html.zc-hide-history .game-history-games-component {
   display: none !important;
 }
 
